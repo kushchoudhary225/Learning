@@ -1,0 +1,131 @@
+.form-container {
+    overflow:hidden;
+    height: 100%;
+    height: calc(100vh - 90px);
+    text-align: center;
+}
+.form-wrapper {
+    height: inherit;
+    position: relative;
+}
+.form-wrapper form {
+    padding: 20px 0px;
+    position: absolute;
+    box-shadow: 3px 2px 20px -8px black;
+    border-radius: 10px;
+    background-color: blue;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -55%);
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.form-wrapper form h1 {
+    width: 100%;
+    background: blue;
+    color: white;
+    border-radius: 20px;
+padding: 10px 0;
+box-shadow: 1px 1px 20px -8px black;
+}
+.row {
+    display: flex;
+    margin-top: 2rem;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+}
+.col {
+
+    box-shadow: 1px 1px 20px -20px black;
+}
+.col input{
+    width: 20rem;
+    color: white;
+    border: none;
+    outline: none;
+    padding: 10px 2px;
+    border-radius: 10px;
+    padding-left: 10px;
+    box-shadow:  1px 2px 20px -9px black;
+    background:transparent
+
+}
+.col input::placeholder{
+    font-weight: bold;
+   color: whitesmoke;
+
+}
+
+.form-wrapper form button {
+    background: red;
+    outline: none;
+    border: none;
+    margin-top: 2rem;
+    padding: 10px 40px;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 1px 2px 20px -3px red;
+    transition: all 0.8s;
+}
+
+.form-wrapper form button:hover {
+   color: white;
+   border: 1px solid rebeccapurple;
+   background: transparent;
+   box-shadow: none;
+}
+
+@media screen and (max-width : 992px) {
+    .form-wrapper form { 
+        width: 650px;
+    }
+}
+@media screen and (max-width : 768px) {
+    .form-wrapper form h1 {
+        font-size: 20px;
+    }
+    .form-wrapper form { 
+    margin-top: 3rem;;
+        width: 500px;
+    }
+    .row {
+        flex-direction: column;
+    }
+    .form-wrapper form {
+        left: 57%;
+    }
+    .col input{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width : 576px) {
+    .form-wrapper form { 
+        width: 300px;
+    }
+}
+@media screen and (max-width : 430px) {
+    .form-wrapper form  {
+        width: 240px;
+    left: 61%;
+    }
+    .form-wrapper form h1{ 
+        font-size: 10px;
+    }
+    .form-wrapper form input {
+        width: 100%;
+    }
+    .form-wrapper form input::placeholder {
+        font-size: 10px;
+    }
+    .form-wrapper form  button {
+        font-size: 8px;
+        padding: 10px 30px;
+    }
+}

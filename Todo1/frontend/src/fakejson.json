@@ -1,0 +1,51 @@
+[
+    {
+      "id": 23234,
+      "name": "Kush Kumar",
+      "designation": "Designation1",
+      "doj": "DateOfJoining1",
+      "department": "Technical",
+      "isActive": true
+    },
+    {
+      "id": 23345,
+      "name": "Name2",
+      "designation": "Rahul Keshri",
+      "doj": "DateOfJoining2",
+      "department": "HR",
+      "isActive": false
+    },
+    {
+      "id": 9387,
+      "name": "Vicky Kumar",
+      "designation": "Designation200",
+      "doj": "DateOfJoining200",
+      "department": "Technical/HR",
+      "isActive": true
+    },
+    {
+        "id": 9876,
+        "name": "Name1",
+        "designation": "Designation1",
+        "doj": "DateOfJoining1",
+        "department": "Technical",
+        "isActive": true
+      },
+      {
+        "id":987,
+        "name": "Law Kumar",
+        "designation": "Designation2",
+        "doj": "DateOfJoining2",
+        "department": "HR",
+        "isActive": false
+      },
+      {
+        "id": 12344,
+        "name": "Rochit Xaxlo",
+        "designation": "Designation200",
+        "doj": "DateOfJoining200",
+        "department": "Technical/HR",
+        "isActive": true
+      }
+  ]
+  
