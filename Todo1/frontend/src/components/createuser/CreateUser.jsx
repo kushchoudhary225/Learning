@@ -1,18 +1,34 @@
 import React, { useState } from 'react'
+import axios from 'axios';
+import {useSelector, useDispatch} from 'react-redux';
+import {setAllUser} from '../../slices/empSlices';
 import './createuser.scss';
 const CreateUser = () => {
+    const BASE_URL = useSelector(state => state.BASE_URL);
+    const dispatch = useDispatch();
     const [input, setInput] = useState({
         name : '',
         designation: '',
         doj : '',
-        department : ''
+        department : 'hr'
     });
+    console.log(input)
     const inputHanlder = (e) => {
         setInput({...input, [e.target.name]: e.target.value})
     }
-    const submitHanlder = (e) => {
+    const submitHanlder = async (e) => {
         e.preventDefault();
-        console.log(input)
+        const {data} = await axios.post(`${BASE_URL}/user/new`,input)
+        alert(data.success ? "user created successfully" : "Failed to create user");
+        let  res = await axios.get(`${BASE_URL}/user/getuser`)
+        res = res.data.alluser;
+        dispatch(setAllUser(res))
+        setInput({
+            name : '',
+            designation: '',
+            doj : '',
+            department : 'hr'
+        });
     }
     return (
         <>
@@ -32,10 +48,18 @@ const CreateUser = () => {
 
                 <div className='row'>
                     <div className="col">
-                        <input type="text" onChange={(e)=> inputHanlder(e)} name='doj' value={input.doj}  placeholder='Date of Joining' />
+                        <input type="date" onChange={(e)=> inputHanlder(e)} name='doj' value={input.doj}  placeholder='Date of Joining' />
                     </div>
                     <div className="col">
-                        <input type="text" onChange={(e)=> inputHanlder(e)} name='department' value={input.department}  placeholder='Enter Department' />
+                        <select name="department"  defaultValue="hr" onChange={(e)=> inputHanlder(e)}>
+                            {/* ['technical', 'hr', 'technical+hr', 'account', 'operation'], */}
+                            <option value="hr">HR</option>
+                            <option value="technical">Technical</option>
+                            <option value="technical+hr">Technical+HT</option>
+                            <option  value="operation">operation  </option>
+                            <option value="account">account</option>
+                        </select>
+                        {/* <input type="text" onChange={(e)=> inputHanlder(e)} name='department' value={input.department}  placeholder='Enter Department' /> */}
                     </div>
                 </div>
         

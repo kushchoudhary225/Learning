@@ -1,23 +1,46 @@
-import React, { useState } from 'react'
-import './updateuser.scss'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux'
+import axios from 'axios'
+import './updateuser.scss'
+import { setAllUser, getOnlyActiveUser } from '../../slices/empSlices';
+
 
 const UpdateUser = () => {
-    const [userid, setUserid] = useState(useParams())
+    let { empid } = useParams();
+    const dispatch = useDispatch();
+    const BASE_URL = useSelector(state => state.BASE_URL);
 
-//TODO: make api call the fill the data in input field
-    const [input, setInput] = useState({
-        name : '',
-        designation: '',
-        doj : '',
-        department : ''
-    });
+    const [input, setInput] = useState({});
+    const getdata = async () => {
+        const {data} = await axios.post(`${BASE_URL}/user/getone`, {empid})
+        setInput({...data.user});
+    }
+    useEffect(()=>{
+        getdata();
+    },[])
+
+    // console.log(input)
+
     const inputHanlder = (e) => {
         setInput({...input, [e.target.name]: e.target.value})
+        // console.log(input)
     }
-    const submitHanlder = (e) => {
+    const updateHanlder = async (e) => {
         e.preventDefault();
-        console.log(input)
+        // console.log(input)
+        const {data} = await axios.post(`${BASE_URL}/user/update`, input)
+        if(!data.success) {
+            alert("Failed to Updated...")
+            return;
+        }
+        alert("Updated successfully...")
+        
+        const res = await axios.get(`${BASE_URL}/user/getuser`)
+        dispatch(setAllUser(res.data.alluser))
+        dispatch(getOnlyActiveUser())
+        // console.log(data)
+        console.log("something")
     }
     return (
         <>
@@ -28,7 +51,7 @@ const UpdateUser = () => {
                 <h1>Complete the Form</h1>
                 <div className='row'>
                     <div className="col">
-                        <input type="text" name='name' onChange={(e)=> inputHanlder(e)} value={input.name} placeholder='Enter Name' />
+                        <input type="text" id='name' name='name' onChange={(e)=> inputHanlder(e)} value={input.name} placeholder='Enter Name' />
                     </div>
                     <div className="col">
                         <input type="text" onChange={(e)=> inputHanlder(e)} name='designation' value={input.designation}  placeholder='Enter Designation' />
@@ -40,11 +63,41 @@ const UpdateUser = () => {
                         <input type="text" onChange={(e)=> inputHanlder(e)} name='doj' value={input.doj}  placeholder='Date of Joining' />
                     </div>
                     <div className="col">
-                        <input type="text" onChange={(e)=> inputHanlder(e)} name='department' value={input.department}  placeholder='Enter Department' />
+                        {
+                            <select name="department" value={input?.department} onChange={(e)=> inputHanlder(e)}>
+                            <option  value="hr">HR</option>
+                            <option  value="technical">Technical</option>
+                            <option  value="technical+hr">Technical+HT</option>
+                            <option   value="operation">operation  </option>
+                            <option  value="account">account</option>
+                        </select>
+                        }
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className="col">
+                        <label htmlFor="status" style={{color:'white'}}>Current Status</label>
+                        {/* { input?.status ?  
+                        <select name="status" id='status' value="true" onChange={(e)=> inputHanlder(e)}>
+                            <option  value={true}>Active 1</option>
+                            <option  value={false}>Not Active 1</option>
+                        </select> : 
+                        <select name="status" id='status'  value="false" onChange={(e)=> inputHanlder(e)}>
+                            <option  value={false} >Not Active 2</option>
+                            <option  value= {true}>Active 1</option>
+                        </select>
+                        } */}
+                        {
+                            <select name="status" value={input?.status} onChange={(e)=> inputHanlder(e)}>
+                            <option value={true}>Active</option>
+                            <option value={false}>Not Active</option>
+                        </select>
+                        }
+                        {/* <input type="text" onChange={(e)=> inputHanlder(e)} name='doj' value={input.status}  placeholder='Date of Joining' /> */}
                     </div>
                 </div>
         
-                <button onClick={(e)=> submitHanlder(e)}>submit</button>
+                <button onClick={(e)=> updateHanlder(e)}>Update</button>
             </form>
             </div>
         </div>

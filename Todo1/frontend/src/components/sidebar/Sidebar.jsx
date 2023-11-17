@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { MdOutlineEventAvailable } from "react-icons/md";
+import { TiUserAdd } from "react-icons/ti";
 import { ImCross } from "react-icons/im";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { FaTasks } from "react-icons/fa";
@@ -44,8 +45,8 @@ const Sidebar = () => {
                                 <li className='cursor-pointer'>
                                     <MdOutlineEventAvailable color='white' />
                                     <Link  style={{ marginLeft: '6px' }} to="/newuser">
-                                        Get Active User</Link></li>
-
+                                       Add New User</Link></li>
+                               
                             </ul>
                         </div>
                     </div>
@@ -74,7 +75,7 @@ const Sidebar = () => {
                                 </li>
                             <li className='cursor-pointer'>
                                 <Link to='/newuser'>
-                                <MdOutlineEventAvailable color='white' />
+                                <TiUserAdd color='white' />
                                 </Link>
                                 </li>
                         </ul>

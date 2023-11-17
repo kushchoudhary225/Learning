@@ -9,11 +9,16 @@
     position: relative;
 }
 .form-wrapper form {
+    background-image: url('../../assets/bg1.jpg');
+    background-size: cover;
+    object-fit: contain;
     padding: 20px 0px;
     position: absolute;
     box-shadow: 3px 2px 20px -8px black;
     border-radius: 10px;
-    background-color: blue;
+    // background: #7071E8;
+    border-radius: 0 5rem;
+    overflow: hidden;
     top: 50%;
     left: 54%;
     transform: translate(-50%, -55%);
@@ -25,7 +30,6 @@
 }
 .form-wrapper form h1 {
     width: 100%;
-    background: blue;
     color: white;
     border-radius: 20px;
 padding: 10px 0;
@@ -42,7 +46,7 @@ box-shadow: 1px 1px 20px -8px black;
 
     box-shadow: 1px 1px 20px -20px black;
 }
-.col input{
+.col input, select{
     width: 20rem;
     color: white;
     border: none;
@@ -54,6 +58,7 @@ box-shadow: 1px 1px 20px -8px black;
     background:transparent
 
 }
+
 .col input::placeholder{
     font-weight: bold;
    color: whitesmoke;
@@ -61,7 +66,7 @@ box-shadow: 1px 1px 20px -8px black;
 }
 
 .form-wrapper form button {
-    background: red;
+    background: #ed5ac3;
     outline: none;
     border: none;
     margin-top: 2rem;
@@ -89,6 +94,9 @@ box-shadow: 1px 1px 20px -8px black;
 @media screen and (max-width : 768px) {
     .form-wrapper form h1 {
         font-size: 20px;
+    }
+    .col  select{
+        width: 28rem;
     }
     .form-wrapper form { 
     margin-top: 3rem;;

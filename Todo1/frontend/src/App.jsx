@@ -1,4 +1,4 @@
-import './App.css'
+import { useEffect } from 'react'
 import Navbar from './components/navbar/Navbar'
 import Sidebar from './components/sidebar/Sidebar'
 import { Routes, Route } from 'react-router-dom'
@@ -7,16 +7,27 @@ import ActiveUser from './components/activeUser/ActiveUser'
 import CreateUser from './components/createuser/CreateUser'
 import UpdateUser from './components/update/UpdateUser'
 import Home from './components/home/Home'
-import {fetchData} from './slices/empSlices.js'
-import {useSelector, useDispatch} from 'react-redux';
+import { getOnlyActiveUser, setAllUser } from './slices/empSlices'
+import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
+import './App.scss'
 
 function App() {
-  const emps =  useSelector(state => state.emps)
-  const dispatch = useDispatch()
-  console.log(emps)
+  const dispatch = useDispatch();
+  const emps = useSelector(state => state.emps);
+  const BASE_URL = useSelector(state => state.BASE_URL);
+  const fetchDataFromAPI = async () =>{
+    const {data} = await axios.get(`${BASE_URL}/user/getuser`)
+    dispatch(setAllUser(data?.alluser))
+    dispatch(getOnlyActiveUser())
+    // dispatch(setAllUser(data?.alluser));
+  }
+  useEffect(()=> {
+      fetchDataFromAPI();
+  },[])
   return (
     <>
-    {/* <button onClick={(e)=> dispatch(fetchData())}>click me</button> */}
+
       <Navbar />
       <Sidebar/>
       <Routes>
@@ -24,7 +35,7 @@ function App() {
         <Route path='/getallusers' element={<AllUserList/>}/>  
         <Route path='/activeusers' element={<ActiveUser/>}/>  
         <Route path='/newuser' element={<CreateUser/>}/>  
-        <Route path='/updateuser/:id' element={<UpdateUser/>}/>  
+        <Route path='/updateuser/:empid' element={<UpdateUser/>}/>  
       </Routes>      
     </>
   )
