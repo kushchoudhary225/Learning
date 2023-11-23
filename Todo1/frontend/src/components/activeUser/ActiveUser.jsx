@@ -11,12 +11,13 @@ const ActiveUser = () => {
     dispatch(getOnlyActiveUser())
   },[])
   const [render, setRender] = useState(true);
-  // console.log({activeEmp})
   return (
     <div className='user-list-container'>
-      <h1>Showing Only Active users</h1>
+      <h1 className='list_heading'> Showing Only Active users</h1>  
       {
-        activeEmp &&  <UserList data={activeEmp} render={true} />
+        activeEmp && <>
+         <UserList data={activeEmp} render={true} />
+        </>
       } 
     </div>
   )

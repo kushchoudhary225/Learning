@@ -1,5 +1,7 @@
 import errorHanlder from "../utils/error.js";
 import UserModel from '../model/UserModel.js';
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -21,10 +23,29 @@ export const singleUser = async (req, res) => {
 export const createUser = async (req, res) =>{
     try {
         const empid = uuidv4();
-        const newuser = await UserModel.create({empid, ...req.body});
-        return res.status(201).json({success : true, newuser})
+        const {name, department, designation, doj, email, password} = req.body;
+        let user = await UserModel.findOne({email});
+        if(name === '' || department === '' || designation === '' || email === '' || password === '')  return res.status(200).json({success : false, msg : "All Field in required"})
+        if(user) {
+            return res.status(200).json({success : false, msg : "User already Exists..."})
+        }
+
+        const secPass = bcrypt.hashSync(password, 10);
+            await UserModel.create({empid, name, department, doj, email, designation, password : secPass});
+
+         const newuser = await UserModel.findOne({email},{password : 0})
+         const payload = {
+            id : newuser._id,
+            empid : newuser.empid,
+            name : newuser.email,
+            email : newuser.email
+         }
+        const token = await jwt.sign(payload, process.env.SECRET_KEY) 
+
+        // console.log({token})
+        return res.status(200).json({success : true,  msg : "user created", newuser, token})
     } catch (e) {
-        errorHanlder(res,e.message);
+        errorHanlder(res,"All field is required");
     }
 } 
 
@@ -71,5 +92,36 @@ export const fetchUserWithFilter = async (req, res) => {
         return res.status(201).json({success : true,size: alluser.length,  alluser})
     } catch (e) {
         errorHanlder(res,e.message);
+    }
+}
+
+export const login =  async (req, res) => {
+    try {
+        const {email, password} = req.body;
+        const user = await UserModel.findOne({email})
+
+        if(user.length === 0) {
+            return errorHanlder(res, "User not found", 401);
+        }
+        const comPass = await bcrypt.compare(password, user.password);
+        if(!comPass) {
+            return errorHanlder(res, "Invalid Credentials", 401);
+        }
+       
+
+        const payload = {
+            id : user._id,
+            empid : user.empid,
+            name : user.email,
+            email : user.email,
+            isAdmin : user.isAdmin,
+         }
+    
+
+        const token = await jwt.sign(payload, process.env.SECRET_KEY) 
+
+        return res.status(200).json({success : true, token, user})
+    } catch (error) {
+        errorHanlder(res, error.message)
     }
 }

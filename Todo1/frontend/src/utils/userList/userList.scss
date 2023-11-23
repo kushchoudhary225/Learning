@@ -4,6 +4,7 @@
     justify-content: center;
     margin-top: 2rem;
     height: 500px;
+    // margin-left: 39px;
   overflow: scroll;
 
 }
@@ -51,4 +52,38 @@ th, td{
     color: black;
     font-weight: bold;
     
+}
+
+.alert_message {
+    display: none;
+}
+
+@media screen and (max-width : 840px) {
+    .alert_message {
+        color: #2B2A4C;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+    .list-container{
+        display: none;
+    }
+    .list_heading {
+        display: none;
+    }
+}
+
+@media screen and (max-width : 640px) {
+    .alert_message {
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width : 400px) {
+    .alert_message {
+        font-size: 0.7rem;
+    }
 }

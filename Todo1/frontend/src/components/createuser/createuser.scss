@@ -9,19 +9,18 @@
     position: relative;
 }
 .form-wrapper form {
-    background-image: url('../../assets/bg1.jpg');
-    background-size: cover;
-    object-fit: contain;
+    background-size: cover; 
     padding: 20px 0px;
     position: absolute;
-    box-shadow: 3px 2px 20px -8px black;
+    box-shadow: -6px 3px 20px -9px #0000005e;
     border-radius: 10px;
-    // background: #7071E8;
-    border-radius: 0 5rem;
+    border-radius:10px;
     overflow: hidden;
+    background: #9AD0C2;
+
     top: 50%;
-    left: 54%;
-    transform: translate(-50%, -55%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 800px;
     display: flex;
     justify-content: center;
@@ -30,10 +29,10 @@
 }
 .form-wrapper form h1 {
     width: 100%;
-    color: white;
     border-radius: 20px;
 padding: 10px 0;
-box-shadow: 1px 1px 20px -8px black;
+box-shadow: 4px 3px 17px -10px #0000009c;
+
 }
 .row {
     display: flex;
@@ -42,31 +41,27 @@ box-shadow: 1px 1px 20px -8px black;
     width: 100%;
     justify-content: center;
 }
-.col {
 
-    box-shadow: 1px 1px 20px -20px black;
-}
 .col input, select{
     width: 20rem;
-    color: white;
+    color: black;
     border: none;
     outline: none;
     padding: 10px 2px;
     border-radius: 10px;
     padding-left: 10px;
-    box-shadow:  1px 2px 20px -9px black;
+    box-shadow: 4px 3px 17px -10px #0000009c;
     background:transparent
-
 }
 
 .col input::placeholder{
     font-weight: bold;
-   color: whitesmoke;
+   color: black;
 
 }
 
 .form-wrapper form button {
-    background: #ed5ac3;
+    // background: #ed5ac3;
     outline: none;
     border: none;
     margin-top: 2rem;
@@ -74,21 +69,22 @@ box-shadow: 1px 1px 20px -8px black;
     border-radius: 10px;
     color: white;
     font-size: 1rem;
+    background-color: blue;
     font-weight: bold;
-    box-shadow: 1px 2px 20px -3px red;
+    box-shadow: 1px 2px 20px -3px blue;
     transition: all 0.8s;
 }
 
 .form-wrapper form button:hover {
-   color: white;
-   border: 1px solid rebeccapurple;
-   background: transparent;
-   box-shadow: none;
+    transform: scale(1.2);
 }
 
 @media screen and (max-width : 992px) {
     .form-wrapper form { 
         width: 650px;
+    }
+    .col  select{
+        // width: 25.5rem;
     }
 }
 @media screen and (max-width : 768px) {
@@ -96,7 +92,7 @@ box-shadow: 1px 1px 20px -8px black;
         font-size: 20px;
     }
     .col  select{
-        width: 28rem;
+        width: 17.5rem;
     }
     .form-wrapper form { 
     margin-top: 3rem;;
@@ -105,9 +101,7 @@ box-shadow: 1px 1px 20px -8px black;
     .row {
         flex-direction: column;
     }
-    .form-wrapper form {
-        left: 57%;
-    }
+    
     .col input{
         width: 90%;
     }
@@ -115,13 +109,13 @@ box-shadow: 1px 1px 20px -8px black;
 
 @media screen and (max-width : 576px) {
     .form-wrapper form { 
+        top: 50%;
         width: 300px;
     }
 }
 @media screen and (max-width : 430px) {
     .form-wrapper form  {
         width: 240px;
-    left: 61%;
     }
     .form-wrapper form h1{ 
         font-size: 10px;

@@ -3,26 +3,37 @@ import { Link } from 'react-router-dom';
 import { FaRegEdit } from "react-icons/fa";
 import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux'
-import {setAllUser, getOnlyActiveUser} from '../../slices/empSlices'
+import {setAllUser, getOnlyActiveUser, setShowModal} from '../../slices/empSlices'
 import './userList.scss';
 
 
 const UserList = ({data, showOnlyActive = false}) => {
   const dispatch = useDispatch();
   const BASE_URL = useSelector(state => state.BASE_URL);
+  const showModal = useSelector(state => state.showModal);
 
 
   const  deleteHanlder = async () => {
     const checkNodes = document.querySelectorAll('input[name="deletet[id]"]');
     const filtered = [];
     for(const checkNode of checkNodes) if(checkNode.checked) filtered.push(checkNode.value);
+    if(filtered.length === 0) {
+      dispatch(setShowModal("Select something...."))
+      return;
+    }
     const res = await axios.post(`${BASE_URL}/user/delete`, {ids : filtered});
     const {data} = await axios.get(`${BASE_URL}/user/getuser`);
     dispatch(setAllUser(data.alluser));
     dispatch(getOnlyActiveUser());
-    console.log(res)
+    dispatch(setShowModal(res.data.msg))
+
+    
+    for(const checkNode of checkNodes) checkNode.checked = false
   }
   return (
+    <>
+    <div className="alert_message">Please Switch to Laptop Screen </div>
+
     <div className='list-container'>
       <div>
       <table cellSpacing="3">
@@ -40,7 +51,7 @@ const UserList = ({data, showOnlyActive = false}) => {
 
         {
           data?.map((ele, i) => (
-            <tr key={ele._id} style={{backgroundColor: i % 2 == 0 ? 'lightblue' : 'yellow', marginTop: '20px'}}>
+            <tr key={ele._id} style={{backgroundColor: i % 2 == 0 ? 'lightgray' : '#a2f0b6', marginTop: '20px'}}>
               <td>{i + 1}</td>
               <td>{ele?.name}</td>
               <td>{ele?.designation}</td>
@@ -65,6 +76,7 @@ const UserList = ({data, showOnlyActive = false}) => {
         </div>
     </div>
     </div>
+          </>
   )
 }
 

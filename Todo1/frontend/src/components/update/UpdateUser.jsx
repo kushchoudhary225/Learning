@@ -3,13 +3,15 @@ import { useParams } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux'
 import axios from 'axios'
 import './updateuser.scss'
-import { setAllUser, getOnlyActiveUser } from '../../slices/empSlices';
+import { setAllUser, getOnlyActiveUser, setShowModal } from '../../slices/empSlices';
 
 
 const UpdateUser = () => {
     let { empid } = useParams();
     const dispatch = useDispatch();
     const BASE_URL = useSelector(state => state.BASE_URL);
+    const showModal = useSelector(state => state.showModal);
+    const message = useSelector(state => state.message);
 
     const [input, setInput] = useState({});
     const getdata = async () => {
@@ -24,23 +26,19 @@ const UpdateUser = () => {
 
     const inputHanlder = (e) => {
         setInput({...input, [e.target.name]: e.target.value})
-        // console.log(input)
     }
     const updateHanlder = async (e) => {
         e.preventDefault();
-        // console.log(input)
         const {data} = await axios.post(`${BASE_URL}/user/update`, input)
         if(!data.success) {
-            alert("Failed to Updated...")
+            dispatch(setShowModal(data.msg))
             return;
         }
-        alert("Updated successfully...")
-        
+        dispatch(setShowModal("User Updated successfully..."))
+       
         const res = await axios.get(`${BASE_URL}/user/getuser`)
         dispatch(setAllUser(res.data.alluser))
         dispatch(getOnlyActiveUser())
-        // console.log(data)
-        console.log("something")
     }
     return (
         <>

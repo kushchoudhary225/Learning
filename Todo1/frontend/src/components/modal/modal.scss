@@ -1,0 +1,65 @@
+.modal_container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.527);
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto Mono', monospace;
+}
+.modal_wrapper{
+    overflow: hidden;
+    height: 200px;
+    width: 300px;
+    z-index: 3;
+    background: white;
+    box-shadow: -4px 3px 20px 0px #00000073;
+    border-radius: 10px;
+    overflow-inline: hidden;
+}
+
+.modal_wrapper  div {
+
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+.modal_desc {
+    font-size: 1.2rem;
+}
+
+.modal_wrapper  div button{
+    padding: 10px 20px;
+    font-weight: bold;
+    box-shadow: -4px 3px 20px 0px rgb(0 97 252 / 60%);
+    background: blue;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.modal_icon{
+    border: 1px solid red;
+    width: 70px;
+    height: 70px;
+    overflow: hidden;
+}
+.modal_wrapper > p {
+    height: 40px;
+    background: #2B2A4C;
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    padding: 10px;
+    // border: 1px solid red;
+
+}
+.modal_wrapper {
+    border-bottom: 10px solid #2B2A4C;
+}

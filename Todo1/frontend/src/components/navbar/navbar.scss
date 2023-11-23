@@ -1,11 +1,10 @@
 .nav-container {
-   background-color: blue;
+   background-color: #2B2A4C;
    height: 80px;
    display: flex;
    justify-content: space-around;
    align-content: center;
    box-shadow: -3px 2px 16px -5px black;
-
 }
 .nav-heading {
     display: flex;
@@ -26,12 +25,77 @@
 }
 ul li {
     margin: 0px 20px;
+    transition: all 0.5s;
 
 }
 ul li a {
     font-size: 20px;
     color: white;
 }
-ul li a:hover{
-    background-color: rgb(39, 118, 192);
+ul li:hover{
+    transform: scale(1.2);
+}
+.logoutbtn{
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.bar_icon {
+    display: none;
+}
+.navbar_links_min_screen {
+    display: none;
+}
+@media screen and (max-width : 640px) {
+    .nav-heading h1 {
+        font-size:1.1rem;
+    }
+    .navbar_links li a , .logoutbtn{
+        font-size: 0.9em;
+    }
+}
+@media screen and (max-width : 500px) {
+    .nav-heading h1 {
+        font-size: 2rem;
+    }
+    .navbar_links {
+        display: none !important;
+    }
+    .bar_icon {
+        display: inline-block;
+    }
+    .nav-heading {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    .navbar_links_min_screen {
+
+        display: flex;
+        flex-direction: column;
+        background-color: #2B2A4C;
+        height: calc(100vh - 80px);
+        width: 100%;
+        align-items: center;
+        top: 80px;
+        z-index: 3;
+        position: absolute;
+    }
+    .navbar_links_min_screen li{
+        padding: 35px 0;
+    }
+    .navbar_links_min_screen li a, .logoutbtn_sm{
+        font-size: 1.4rem;
+        background-color: transparent;
+        border: none;
+        color: white;
+    }
+    .navbar_links_min_screen li a:hover, .logoutbtn:hover{
+        border-bottom: 1px solid white;
+        // border-color: white;
+    }
+
 }

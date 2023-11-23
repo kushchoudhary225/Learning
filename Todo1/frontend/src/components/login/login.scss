@@ -1,0 +1,198 @@
+
+.login_wrapper{
+    display: flex;
+    justify-content: center;
+    height: 600px;
+    align-items: center;
+
+
+}
+.login_container {
+    margin-left: 100px;
+    height: 420px;
+    width: 800px;
+    display: flex;
+    justify-content: center;
+    background: white;
+    box-shadow: -12px 8px 16px -9px #00000026;
+    border-radius: 1rem;
+    margin-top: 3rem;
+
+
+}
+.first {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.second {
+    margin-top: 2rem;
+    width: 50%;
+}
+.second label {
+    color: black;
+}
+.second h1{
+    font-weight:900;
+}
+.login_input {
+    // border: 1px solid red;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 1rem;
+}
+.login_input label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.login_input input {
+    border: none;
+    box-shadow: -2px 4px 17px -4px rgb(0 0 0 / 30%);
+    padding: 15px 10px;
+    border-radius: 10px;
+}
+
+.input_login_checkbox {
+    align-items: center;
+    display: flex;
+    flex-direction: row ;
+}
+.input_login_checkbox label {
+    font-size: 0.7rem;
+}
+.login_button{
+    margin-top: 2rem;
+    text-align: center;
+}
+.login_button button {
+    padding: 0.5rem 3rem;
+    background-color: blueviolet;
+    border: none;
+    outline: none;
+    border-radius:0.4rem;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.5s;
+}
+.login_links {
+    font-size: 0.8rem;
+    margin-top: 1.2rem;
+}
+.login_links a{
+   text-decoration: underline;
+   cursor: pointer;
+}
+
+.login_button button:hover { 
+    background-color: transparent;
+    color: blueviolet;
+    border: 1px solid blueviolet;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 1024px)  {
+    .login_container { 
+      margin-left: 80px;
+    }
+}
+@media screen and (max-width: 900px)  {
+    .login_container { 
+      width: 500px;
+      height: 450px;
+      justify-content: center;
+      align-items: center;
+    }
+   .first {
+    display: none;
+   }
+   .second{
+    width: 100%;
+    padding: 0 20px;
+   }
+   .second h1{
+    margin-left: 20px;
+   }
+}
+
+@media screen and (max-width: 620px)  {
+    .login_container { 
+        width: 350px;
+        height: 450px;
+        justify-content: center;
+        align-items: center;
+      }
+     
+     .second{
+        margin-top: 0px;
+        width: 100%;
+        padding: 0 20px;
+     }
+     .second h1{
+        font-size: 1.2rem;
+     }
+     .second label {
+        font-size: 0.8rem;
+     }
+
+     .login_button {
+        margin-top: 1rem;;
+
+     }
+     .login_button button{
+        width: 80%;
+     }
+
+     .login_links {
+        margin-left:20px;
+    }
+    
+}
+
+@media screen and (max-width: 476px)  {
+    .login_container {
+        width: 270px;
+        padding: 0;
+    }
+    .second{
+        padding: 0;
+    }
+    .second h1{
+        text-align: center;
+        margin: 0;
+        font-size: 1rem;
+    }
+    .second label{
+        font-size: 0.8rem;
+        font-weight: 300;
+    }
+
+    .login_button button {
+        width: 69%;
+        font-size: 1rem;
+        font-weight: 200;
+    }
+}
+
+
+.relative {
+    position: relative;
+}
+
+
+.eyeIconsute {
+    position: absolute;
+  top: 45px;
+  right: 39px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

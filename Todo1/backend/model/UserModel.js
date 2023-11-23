@@ -10,6 +10,11 @@ const schema = new mongoose.Schema({
         type:String,
         required : true
     },
+    email : {
+        type:String,
+        unique : true,
+        required : true
+    },
     designation : {
         type:String,
         required : true
@@ -26,6 +31,14 @@ const schema = new mongoose.Schema({
     status: {
         type:Boolean,
         default : true
+    },
+    isAdmin: {
+        type:Boolean,
+        default : false
+    },
+    password: {
+        type:String,
+        required : true
     },
 })
 

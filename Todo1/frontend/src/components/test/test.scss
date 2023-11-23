@@ -1,0 +1,114 @@
+.test_container {
+    background-color: blue;
+    height: calc(100vh - 80px);
+    width: 100%;
+    background: linear-gradient(
+        206deg
+        , #9268E1, #5AABC9);
+        display: inline-block;
+}
+.test_wrapper {
+    // position: relative;
+    margin-top: 3rem;
+    display: flex;
+    gap: 4rem;
+    flex: 1;
+    justify-content: space-around;
+}
+.test_title {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+.test_input_parent{
+    margin-top: 1rem;
+}
+.test_input_parent input, select, option{
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 8px;
+    width: 300px;
+    outline: none;
+    padding: 8px;
+}
+.test_btn button{
+    color: rgba(0, 0, 0, 0.61);
+    outline: none;
+    border:none;
+    width: 300px;
+    margin-top: 1rem;
+    padding: 10px 0px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    background-color: white;
+    cursor: pointer;
+
+}
+.topology{
+    height: 18rem;
+    position: absolute;
+    top: 0%;
+    left: 10%;
+    // transform: translate(-50%, -90%);
+}
+
+.test_left {
+    height: 100%;
+    width: 40%;
+   
+    text-align: center;
+}
+.test_right {
+    height: inherit;
+    width: 60%;
+}
+.topology_container{
+    position: relative;
+}
+
+.round1 {
+    position: absolute;
+    top: 10px;
+    height: 6rem;
+    transform: translate(-26px, 89px);
+
+}
+.round2 {
+    position: absolute;
+    top: 10px;
+    transform: translate(57px, 26rem);
+}
+.round3 {
+    position: absolute;
+    top: 10px;
+    transform: translate(36rem, 13rem);
+}
+
+@media screen and (max-width : 890px) {
+    .test_left {
+        width: 100%;
+        z-index: 2;
+
+    }
+
+    .test_right{
+        z-index: 1;
+        position: absolute;
+        top: 10rem;
+        left: 40%;
+        transform: translate(-10rem);
+        opacity: 0.8;
+        filter: blur(3px);
+    }
+}
+
+@media screen and (max-width : 470px) {
+    .test_title{
+        font-size: 1.3rem;
+        text-align: center;
+        text-decoration: underline;
+
+    }
+    .test_input_parent input, select, option{
+        width: 260px;
+    }
+}
