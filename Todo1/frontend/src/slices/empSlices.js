@@ -46,7 +46,6 @@ const empSlice = createSlice({
         setShowModal: (state, action) => {
           state.showModal = !state.showModal;
           state.message = action.payload;
-          // console.log(state.message, 'from zzzzzzzzzzzzzzzzzzzzzzzz' , action.payload)
         },
         destroyAllState : (state, action) => {
           state.emps = null;

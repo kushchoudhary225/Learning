@@ -1,7 +1,7 @@
 *{
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
     transition: all 0.8s;
-    /* color: white; */
+    font-family: 'Carrois Gothic', sans-serif;
 }
 body {
     background: linear-gradient(206deg, #9268E1, #5AABC9);
@@ -9,4 +9,16 @@ body {
     width: 100vw;
     overflow: hidden;
     position: relative;
+}
+.update_btn:hover{
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+.bg-white {
+    background-color: white;
+}
+
+input, select {
+    background-color: rgba(255, 255, 255, 0.768627451) !important;
 }

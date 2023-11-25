@@ -12,6 +12,7 @@ import axios from 'axios'
 import { useSelector, useDispatch } from "react-redux";
 
 const Login = () => {
+  console.log("login")
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("kushc225@gmail.com");
   const dispatch = useDispatch();
@@ -87,25 +88,28 @@ const Login = () => {
             </div>
 
             <div className="login_input relative">
+
               <label htmlFor="password">Password</label>
+              {/* <div className="flex"> */}
               <input
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 id="password"
                 value={password}
                 placeholder="**********"
-              />
+                />
               {open ? (
                 <FaRegEyeSlash
-                  onClick={changePasswordType}
-                  className="eyeIconsute cursor-pointer "
+                onClick={changePasswordType}
+                className="eyeIconsute cursor-pointer "
                 />
-              ) : (
+                ) : (
                 <FaRegEye
-                  onClick={changePasswordType}
-                  className="eyeIconsute cursor-pointer "
+                onClick={changePasswordType}
+                className="eyeIconsute cursor-pointer "
                 />
-              )}
+                )}
+                {/* </div> */}
             </div>
 
             <div className="login_input input_login_checkbox relative">
@@ -115,12 +119,6 @@ const Login = () => {
 
             <div className="login_button">
               <button onClick={submitHanlder}>Login</button>
-            </div>
-
-            <div className="login_links">
-              <p>
-                Don't have an Account ? <Link to="/signin">Create Account</Link>
-              </p>
             </div>
           </div>
         </div>

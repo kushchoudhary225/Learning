@@ -14,6 +14,7 @@
 }
 .nav-heading h1{
     font-weight:900;
+    font-size: 2rem;
 }
 
 .nav-container ul {
@@ -47,7 +48,10 @@ ul li:hover{
 }
 .navbar_links_min_screen {
     display: none;
+    transform: translateX(-30rem);
+    transition: all 1.7s ease-in-out;
 }
+
 @media screen and (max-width : 640px) {
     .nav-heading h1 {
         font-size:1.1rem;
@@ -73,7 +77,7 @@ ul li:hover{
         padding: 0 20px;
     }
     .navbar_links_min_screen {
-
+        transform: translate(-30rem);
         display: flex;
         flex-direction: column;
         background-color: #2B2A4C;

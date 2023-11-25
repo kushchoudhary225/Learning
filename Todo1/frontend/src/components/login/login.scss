@@ -4,8 +4,6 @@
     justify-content: center;
     height: 600px;
     align-items: center;
-
-
 }
 .login_container {
     margin-left: 100px;
@@ -37,8 +35,6 @@
     font-weight:900;
 }
 .login_input {
-    // border: 1px solid red;
-    padding: 0 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -96,6 +92,10 @@
     cursor: pointer;
 }
 
+.second h1 {
+    font-size: 2rem ;
+}
+
 
 
 @media screen and (max-width: 1024px)  {
@@ -118,6 +118,7 @@
     padding: 0 20px;
    }
    .second h1{
+    font-size: 2rem;
     margin-left: 20px;
    }
 }
@@ -189,10 +190,16 @@
 
 .eyeIconsute {
     position: absolute;
-  top: 45px;
+  top: 54px;
   right: 39px;
 }
 
 .cursor-pointer {
     cursor: pointer;
+}
+.flex {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

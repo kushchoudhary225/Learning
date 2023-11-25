@@ -108,7 +108,6 @@ export const login =  async (req, res) => {
             return errorHanlder(res, "Invalid Credentials", 401);
         }
        
-
         const payload = {
             id : user._id,
             empid : user.empid,
@@ -117,9 +116,8 @@ export const login =  async (req, res) => {
             isAdmin : user.isAdmin,
          }
     
-
         const token = await jwt.sign(payload, process.env.SECRET_KEY) 
-
+        res.cookie( 'token', token,{ maxAge: 1000 * 60 * 10, httpOnly: false });
         return res.status(200).json({success : true, token, user})
     } catch (error) {
         errorHanlder(res, error.message)

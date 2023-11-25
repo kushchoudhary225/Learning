@@ -24,12 +24,12 @@ const UserList = ({data, showOnlyActive = false}) => {
     const res = await axios.post(`${BASE_URL}/user/delete`, {ids : filtered});
     const {data} = await axios.get(`${BASE_URL}/user/getuser`);
     dispatch(setAllUser(data.alluser));
+    // console.log({data : data.alluser})
     dispatch(getOnlyActiveUser());
     dispatch(setShowModal(res.data.msg))
-
-    
     for(const checkNode of checkNodes) checkNode.checked = false
   }
+  console.log({data})
   return (
     <>
     <div className="alert_message">Please Switch to Laptop Screen </div>
@@ -38,12 +38,13 @@ const UserList = ({data, showOnlyActive = false}) => {
       <div>
       <table cellSpacing="3">
         <thead>
-          <tr>
+          <tr className='table_first_row'>
             <th>Sno</th>
             <th>Name</th>
             <th>Designation</th>
             <th>DOJ</th>
             <th>Department</th>
+            <th>Status</th>
             <th colSpan="2">Options</th>
           </tr>
         </thead>
@@ -51,12 +52,13 @@ const UserList = ({data, showOnlyActive = false}) => {
 
         {
           data?.map((ele, i) => (
-            <tr key={ele._id} style={{backgroundColor: i % 2 == 0 ? 'lightgray' : '#a2f0b6', marginTop: '20px'}}>
+            <tr className='trfornew' key={ele._id}>
               <td>{i + 1}</td>
               <td>{ele?.name}</td>
               <td>{ele?.designation}</td>
               <td>{ele?.doj}</td>
               <td>{ele?.department}</td>
+              <td>{ele?.status.toString()}</td>
               <td style={{textAlign:'center'}}>
                <input name='deletet[id]' value={ele._id} style={{color:'red'}} type='checkbox'  />
               </td>
@@ -72,7 +74,7 @@ const UserList = ({data, showOnlyActive = false}) => {
         </table>
 
         <div className='list-del-btn' onClick={deleteHanlder}>
-            <span>Delete </span>
+            <button>Delete </button>
         </div>
     </div>
     </div>

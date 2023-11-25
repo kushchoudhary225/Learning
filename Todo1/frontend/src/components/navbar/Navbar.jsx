@@ -3,7 +3,6 @@ import {useSelector, useDispatch} from 'react-redux'
 import './navbar.scss'
 import { Link } from 'react-router-dom'
 import { redirect } from "react-router-dom";
-import axios from 'axios';
 import { FaBarsStaggered } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { destroyAllState } from '../../slices/empSlices';
@@ -17,7 +16,6 @@ const Navbar = () => {
       try {      
           localStorage.removeItem('token');
           dispatch(destroyAllState())
-          console.log("from logout called")
           return redirect('/login')
       } catch (error) {
         console.log(error.message)
@@ -25,7 +23,17 @@ const Navbar = () => {
   }
   const [open, setOpen] = useState(false)
   const toggleNavbar = () => {
-      setOpen(!open);
+      const nav =  document.querySelector('.navbar_links_min_screen');
+      if(open) {
+        nav.style.transform = 'translateX(-30rem)';
+        nav.style.opacity = '0'
+    }else {
+      nav.style.transform = 'translateX(0)';
+      nav.style.opacity = '1'
+    }
+      setTimeout(()=> {
+        setOpen(!open);
+      }, 1000)
   }
   return (
     <>
@@ -48,18 +56,16 @@ const Navbar = () => {
         </ul>
 
     </div>
-        {
-          open && 
           <ul className='navbar_links_min_screen'>
-          <li><Link onClick={() => setOpen(false)} to="/">Home</Link></li>
-            <li><Link onClick={() => setOpen(false)} to="/newuser  ">New User</Link></li>
-            <li><Link onClick={() => setOpen(false)} to="/activeusers">Active User</Link></li>
-            <li><Link onClick={() => setOpen(false)} to="/getallusers">All user</Link></li>
+          <li><Link onClick={() => toggleNavbar(false)} to="/">Home</Link></li>
+            <li><Link onClick={() => toggleNavbar(false)} to="/newuser  ">New User</Link></li>
+            <li><Link onClick={() => toggleNavbar (false)} to="/activeusers">Active User</Link></li>
+            <li><Link onClick={() => toggleNavbar (false)} to="/getallusers">All user</Link></li>
           {
             isLogin === true && <li><button className='cursor-pointer logoutbtn_sm' onClick={logout}>Logout</button></li>
           }
       </ul>
-        }
+        
         </>
   )
 }
