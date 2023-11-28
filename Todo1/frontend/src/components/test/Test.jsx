@@ -7,7 +7,7 @@ import { setAllUser, setShowModal } from '../../slices/empSlices'; import './tes
 import topology from '../../assets/topology.png'
 import round from '../../assets/Ellipse2.png'
 
-import { useFormik,Field } from 'formik'
+import { useFormik } from 'formik'
 import './test.scss'
 const Test = () => {
   const BASE_URL = useSelector(state => state.BASE_URL);
@@ -125,16 +125,6 @@ const Test = () => {
 
 
               <div className='test_input_parent'>
-              
-              <Field name="color" as="select">
-
-<option value="red">Red</option>
-
-<option value="green">Green</option>
-
-<option value="blue">Blue</option>
-
-</Field>
 
                 {/* <select name="department" value={values.dep} onChange={handleChange} >
                   <option value="hr">HR</option>

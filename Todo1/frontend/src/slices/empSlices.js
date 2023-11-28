@@ -7,8 +7,8 @@ const initialState = {
     emps : null,
     activeEmp: null,
     authUser : null,
-    isLogin: false,
-    isAdmin : false,
+    isLogin: true,
+    isAdmin : true,
     showModal : false,
     message : ''
      
