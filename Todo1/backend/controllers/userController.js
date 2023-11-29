@@ -53,13 +53,14 @@ export const createUser = async (req, res) =>{
 export const deleteUser = async (req, res) =>{
     try {
         const {ids} = req.body;
-        const invlidId = [];
+        console.log({ids})
+        const inavlidId = [];
         for(const id of ids){
             if(await UserModel.findByIdAndUpdate(id, {status : false}) === null) {
-                invlidId.push(id)
+                inavlidId.push(id)
             }
         }
-        if(invlidId.length !== 0) return res.status(401).json({success : false, msg : 'inavlid Ids', invlidId})
+        if(inavlidId.length !== 0) return res.status(200).json({success : false, msg : 'inavlid Ids', inavlidId})
         return res.status(201).json({success : true, msg : 'user Deleted successfully.  '})
     } catch (e) {
         errorHanlder(res,e.message);
@@ -69,8 +70,9 @@ export const deleteUser = async (req, res) =>{
 export const updateUser = async (req, res) =>{
     try {
         const {_id, name, department, designation, doj, status } = req.body;
+        
         const updatedUser = await UserModel.findByIdAndUpdate(_id, {name, department, designation, doj, status}, { new: true })
-        return res.status(201).json({success : true, updatedUser})
+        return res.status(201).json({success : true, msg : 'user updated successfully',  updatedUser})
     } catch (e) {
         errorHanlder(res,e.message);
     }
@@ -105,7 +107,7 @@ export const login =  async (req, res) => {
         }
         const comPass = await bcrypt.compare(password, user.password);
         if(!comPass) {
-            return errorHanlder(res, "Invalid Credentials", 401);
+            return errorHanlder(res, "Invalid Credentials", 201);
         }
        
         const payload = {

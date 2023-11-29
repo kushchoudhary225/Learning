@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useSelector, useDispatch} from 'react-redux'
 import {setAllUser, getOnlyActiveUser, setShowModal} from '../../slices/empSlices'
 import './userList.scss';
+import { deleteUser, fetchData, fetchOnlyActiveUser, } from '../../API/collection';
 
 
 const UserList = ({data, showOnlyActive = false}) => {
@@ -21,15 +22,22 @@ const UserList = ({data, showOnlyActive = false}) => {
       dispatch(setShowModal("Select something...."))
       return;
     }
-    const res = await axios.post(`${BASE_URL}/user/delete`, {ids : filtered});
-    const {data} = await axios.get(`${BASE_URL}/user/getuser`);
-    dispatch(setAllUser(data.alluser));
+    // const res = await axios.post(`${BASE_URL}/user/delete`, {ids : filtered});
+    dispatch(deleteUser({ids : filtered}));
+    setTimeout(() => {
+      dispatch(fetchData());
+      dispatch(fetchOnlyActiveUser());
+    }, 0)
+    // dispatch(getOnlyActiveUser());
+
+
+    // const {data} = await axios.get(`${BASE_URL}/user/getuser`);
+    // dispatch(setAllUser(data.alluser));
     // console.log({data : data.alluser})
-    dispatch(getOnlyActiveUser());
-    dispatch(setShowModal(res.data.msg))
+    // dispatch(setShowModal(res.data.msg))
     for(const checkNode of checkNodes) checkNode.checked = false
   }
-  console.log({data})
+  // console.log({data})
   return (
     <>
     <div className="alert_message">Please Switch to Laptop Screen </div>

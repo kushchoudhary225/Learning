@@ -18,7 +18,6 @@ const Modal = () => {
         modal.style.transform = 'translateX(0)';
         modal.style.opacity = '1';
       },[])
-      console.log("called")
   },[]) 
   return (
     <div className='modal_container'>

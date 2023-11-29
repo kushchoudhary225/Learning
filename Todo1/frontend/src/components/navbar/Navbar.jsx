@@ -46,7 +46,7 @@ const Navbar = () => {
         </div>
         
         <ul className='navbar_links'>
-            <li><Link  to="/">Home</Link></li>
+           
             <li><Link  to="/newuser  ">New User</Link></li>
             <li><Link  to="/activeusers">Active User</Link></li>
             <li><Link  to="/getallusers">All user</Link></li>
@@ -57,7 +57,6 @@ const Navbar = () => {
 
     </div>
           <ul className='navbar_links_min_screen'>
-          <li><Link onClick={() => toggleNavbar(false)} to="/">Home</Link></li>
             <li><Link onClick={() => toggleNavbar(false)} to="/newuser  ">New User</Link></li>
             <li><Link onClick={() => toggleNavbar (false)} to="/activeusers">Active User</Link></li>
             <li><Link onClick={() => toggleNavbar (false)} to="/getallusers">All user</Link></li>

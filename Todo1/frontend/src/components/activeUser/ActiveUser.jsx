@@ -3,12 +3,13 @@ import './activeuser.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOnlyActiveUser } from '../../slices/empSlices';
 import UserList from '../../utils/userList/UserList';
+import { fetchData, fetchOnlyActiveUser } from '../../API/collection';
 
 const ActiveUser = () => {
   const dispatch = useDispatch()
   const activeEmp = useSelector(state => state.activeEmp)
   useEffect(()=> {
-    dispatch(getOnlyActiveUser())
+    dispatch(fetchOnlyActiveUser())
   },[])
   const [render, setRender] = useState(true);
   return (

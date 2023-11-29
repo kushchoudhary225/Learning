@@ -7,14 +7,17 @@ import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
-import { setAuthUser, setIsAdmin, setIsLogin, fetchData } from "../../slices/empSlices";
+import { setAuthUser, setIsAdmin, setIsLogin } from "../../slices/empSlices";
+import { setShowModal } from "../../slices/empSlices";
+import { fetchData } from "../../API/collection";
 import axios from 'axios'
 import { useSelector, useDispatch } from "react-redux";
 
 const Login = () => {
-  console.log("login")
+  // console.log("login")
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("kushc225@gmail.com");
+  // const setShowModal = useState(state => state.setShowModal)
   const dispatch = useDispatch();
   const [password, setPassword] = useState("password");
   const BASE_URL = useSelector((state) => state.BASE_URL);
@@ -40,14 +43,15 @@ const Login = () => {
           if(user.isAdmin) dispatch(setIsAdmin(true));
           dispatch(setIsLogin(true))
         if(!user.isAdmin) return navigate('/login') 
-          console.log("something else ")
+          // console.log("something else ")
           return navigate("/getallusers");
       }else {
-          console.log(data.msg);
+          dispatch(setShowModal(data.msg));
       }
 
     } catch (error) {
-      alert(error.message);
+      console.log(error.msg)
+      dispatch(setShowModal(error.message))
     }
   };
 

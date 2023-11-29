@@ -10,7 +10,11 @@ app.use(cors());
 env.config()
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-app.use(session({secret : 'thisissecret'}))
+app.use(session({
+    secret: 'cookie_secret',
+    resave: true,
+    saveUninitialized: true
+}));
 
 
 app.use(function(req, res, next) {

@@ -1,5 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+
 import axios from 'axios';
+import { fetchData, createUser, deleteUser, updateUser, singleUser, login, logout,fetchOnlyActiveUser } from "../API/collection";
 
 const base_url = 'http://localhost:3000/api/v1';
 const initialState = {
@@ -10,29 +12,22 @@ const initialState = {
     isLogin: true,
     isAdmin : true,
     showModal : false,
-    message : ''
+    message : '',
+    updateuser : null
      
 }
-export const fetchData = createAsyncThunk('fetchData', async () => {
-    try {
-      const data = await axios.get(`${base_url}/user/getuser`);
-      return data.data;
-    } catch (error) {
-      console.error("Error fetching employee details:", error);
-      throw error; 
-    }
-  });
+
 
 
 const empSlice = createSlice({
     name : 'employees details',
     initialState,
     reducers: {
-        setAllUser : (state, action)=>{
+        setAllUser : (state, action)=> {
             state.emps = action.payload;
         },
         getOnlyActiveUser : (state, action)=>{
-          state.activeEmp = state.emps?.filter(ele => ele.status)
+          // state.activeEmp = state.activeEmp.action.payload.alluser;
         },
         setAuthUser : (state, action) => {
           state.authUser = action.payload;
@@ -47,6 +42,7 @@ const empSlice = createSlice({
           state.showModal = !state.showModal;
           state.message = action.payload;
         },
+        
         destroyAllState : (state, action) => {
           state.emps = null;
           state.activeEmp= null;
@@ -58,14 +54,59 @@ const empSlice = createSlice({
     },
     
     extraReducers : (builder) => {
-        builder.addCase(fetchData.pending, async (state, action) => {
-          console.log("pending")
+        builder.addCase(fetchData.pending,  (state, action) => {
+          // console.log("pending")
         })
-        .addCase(fetchData.fulfilled,   async(state, action) => {
-            console.dir('fullfilled', action.payload)
-             state.emps = action.payload;
-        }).addCase(fetchData.rejected,  async(state, action) => {
-          console.log("rejected")
+        .addCase(fetchData.fulfilled,   (state, action) => {
+            // console.dir('fullfilled', action.payload)
+             state.emps = action.payload.alluser;
+              // console.log(state.emps)
+        }).addCase(fetchData.rejected,  (state, action) => {
+          state.message = 'Internal Server error';
+          state.showModal = true;
+        }).addCase(createUser.pending,  (state, action) => {
+            // console.log("pending")
+        })
+        .addCase(createUser.fulfilled,   (state, action) => {
+            // console.log("action.payload", action.payload.msg)
+              state.message = action.payload.msg
+              state.showModal = true;
+              // console.log('fulfilled state');
+        }).addCase(createUser.rejected,  (state, action) => {
+          state.message = 'Internal Server error';
+          state.showModal = true;
+        }).addCase(deleteUser.pending, (state, action) => {
+
+        }).addCase(deleteUser.fulfilled, (state, action) => {
+          state.message = action.payload.msg;
+          state.showModal = true;
+        }).addCase(deleteUser.rejected, (state , action) => {
+          state.message = 'Internal Server error';
+          state.showModal = true;
+        }).addCase(fetchOnlyActiveUser.pending, (state, action) => {
+
+        }).addCase(fetchOnlyActiveUser.fulfilled, (state,action) => {
+          state.activeEmp = action.payload.alluser;
+        }).addCase(fetchOnlyActiveUser.rejected, (state, action) => {
+            state.showModal = true;
+            state.message = 'Internal Server error'
+        }).addCase(singleUser.pending, (state, action) => {
+
+        }).addCase(singleUser.fulfilled, (state, action) => {
+          // console.log('calling api ', action.payload.user)
+            state.updateuser = action.payload.user;
+        }).addCase(singleUser.rejected, (state, action) => {
+          state.showModal = true;
+          state.message = "Internal Server Error";
+        }).addCase(updateUser.pending, (state, action) => {
+
+        }).addCase(updateUser.fulfilled, (state, action) => {
+          state.showModal = true;
+          state.message = action.payload.msg;
+
+        }).addCase(updateUser.rejected, (state, action) => {
+          state.showModal = true;
+          state.message = "Internal Server Error..."
         })
     }
 })

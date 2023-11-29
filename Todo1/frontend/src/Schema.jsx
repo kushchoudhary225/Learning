@@ -9,6 +9,6 @@ export const userSchema =yup.object({
         "Choose a strong password"
     ).required(),
     doj : yup.date().required('Provide date'),
-    hr : yup.string().required("Choose Departments")
+    department : yup.string().required("Choose Departments")
 
 })

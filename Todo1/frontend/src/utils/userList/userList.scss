@@ -12,7 +12,7 @@ tr {
     background-color: rgb(178, 182, 179);
 }
 .trfornew:hover {
-    transform: scaleX(1.1);
+    // transform: scaleX(1.1);
     cursor: pointer;
     border-radius: none;
     border: 1px solid transparent;
@@ -42,26 +42,23 @@ th, td{
     gap: 10px;
     align-items: center;
     justify-content: center;
-
     width: min-content;
     border-radius: 20px;
     padding: 10px 30px;
-    box-shadow: -4px 3px 25px -3px black;
     cursor: pointer;
+    background-color: #2B2A4C;
     transition: all 0.5s;
 }
 .list-del-btn:hover {
-    border: 1px solid rgb(252, 2, 52);
-    background: rgb(207, 147, 147, 0.3);
+    box-shadow: -5px 5px 25px -11px black;
+
+    transform: scale(1.2);
 
 }
 .list-del-btn button {
     color: white;
     display: inline-block;
     width: min-content;
-}
-.list-del-btn span:hover {
-    color: crimson;
 }
 
 .alert_message {
