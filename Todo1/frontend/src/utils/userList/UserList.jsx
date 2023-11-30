@@ -28,22 +28,14 @@ const UserList = ({data, showOnlyActive = false}) => {
       dispatch(fetchData());
       dispatch(fetchOnlyActiveUser());
     }, 0)
-    // dispatch(getOnlyActiveUser());
-
-
-    // const {data} = await axios.get(`${BASE_URL}/user/getuser`);
-    // dispatch(setAllUser(data.alluser));
-    // console.log({data : data.alluser})
-    // dispatch(setShowModal(res.data.msg))
     for(const checkNode of checkNodes) checkNode.checked = false
   }
   // console.log({data})
   return (
     <>
-    <div className="alert_message">Please Switch to Laptop Screen </div>
-
     <div className='list-container'>
-      <div>
+      <div className='list-container-child'>
+        <div className='table_parent'>
       <table cellSpacing="3">
         <thead>
           <tr className='table_first_row'>
@@ -80,13 +72,14 @@ const UserList = ({data, showOnlyActive = false}) => {
         }
         </tbody>
         </table>
-
-        <div className='list-del-btn' onClick={deleteHanlder}>
+        </div>
+        <div className='list-del-btn table_button' onClick={deleteHanlder}>
             <button>Delete </button>
         </div>
+        </div>
+
     </div>
-    </div>
-          </>
+  </>
   )
 }
 

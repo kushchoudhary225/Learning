@@ -3,19 +3,26 @@
     display: flex;
     justify-content: center;
     margin-top: 2rem;
-    height: 500px;
-    // margin-left: 39px;
-  overflow: scroll;
+    height: 32rem;
+}
+.list-container  div {
+    overflow: scroll;
+}
+.table_parent {
+
+}
+.table_button {
 }
 tr {
     color: white;
     background-color: rgb(178, 182, 179);
 }
+table {
+    overflow: scroll;
+}
 .trfornew:hover {
-    // transform: scaleX(1.1);
     cursor: pointer;
     border-radius: none;
-    border: 1px solid transparent;
     background-color: #2b2a4cb6;
 }
 .lightblue {
@@ -26,9 +33,13 @@ tr {
 }
 th, td{
     padding: 10px;
-    border-radius: 20px;
     text-transform: capitalize;
 
+}
+.list-container > div {
+    height: 85%;
+//   overflow: scroll;
+  padding: 0rem 1rem;
 }
 .table_first_row{
     background-color: rgb(99, 99, 226);
@@ -51,7 +62,6 @@ th, td{
 }
 .list-del-btn:hover {
     box-shadow: -5px 5px 25px -11px black;
-
     transform: scale(1.2);
 
 }
@@ -65,32 +75,28 @@ th, td{
     display: none;
 }
 
-@media screen and (max-width : 840px) {
-    .alert_message {
-        color: #2B2A4C;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-        font-weight: bold;
-        font-size: 2rem;
-    }
-    .list-container{
-        display: none;
-    }
-    .list_heading {
-        display: none;
-    }
-}
 
-@media screen and (max-width : 640px) {
-    .alert_message {
-        font-size: 1rem;
+.list-container-child{
+    display: flex;
+    flex-direction: column;
+}
+.table_parent {
+    overflow: scroll;
+    height: 80%;
+}
+.table_button {
+    height: 10%;
+    overflow: hidden !important;
+}
+@media screen and (max-width : 870px) {
+    th, td{
+        padding: 0.6rem;
+        font-size: 0.6rem;
     }
 }
-@media screen and (max-width : 400px) {
-    .alert_message {
-        font-size: 0.7rem;
+@media screen and (max-width : 500px) {
+    th, td{
+        padding: 0.6rem;
+        font-size: 0.4rem;
     }
 }

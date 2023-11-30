@@ -69,11 +69,14 @@ export const deleteUser = async (req, res) =>{
 
 export const updateUser = async (req, res) =>{
     try {
-        const {_id, name, department, designation, doj, status } = req.body;
+        const {_id, name, department, designation, doj, status, email } = req.body;
         
-        const updatedUser = await UserModel.findByIdAndUpdate(_id, {name, department, designation, doj, status}, { new: true })
+        const updatedUser = await UserModel.findByIdAndUpdate(_id, {name, department, designation, doj,email, status}, { new: true })
         return res.status(201).json({success : true, msg : 'user updated successfully',  updatedUser})
     } catch (e) {
+        if(e.codeName === 'DuplicateKey') {
+            return res.status(200).json({success : false, msg : 'Email cannot be duplicate...'})
+        }
         errorHanlder(res,e.message);
     }
 } 

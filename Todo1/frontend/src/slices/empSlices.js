@@ -103,6 +103,7 @@ const empSlice = createSlice({
         }).addCase(updateUser.fulfilled, (state, action) => {
           state.showModal = true;
           state.message = action.payload.msg;
+          state.updateuser = null;
 
         }).addCase(updateUser.rejected, (state, action) => {
           state.showModal = true;
