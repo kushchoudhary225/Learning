@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import Navbar from './components/navbar/Navbar'
 import Sidebar from './components/sidebar/Sidebar'
 import { Routes, Route } from 'react-router-dom'
@@ -31,14 +31,17 @@ function App() {
     dispatch(getOnlyActiveUser())
   }
 
-  const token = localStorage.getItem('token') || ''
   useEffect(()=>{
+    const token = localStorage.getItem('token') || ''
     if(token) {
       dispatch(setIsLogin(true));
       dispatch(setIsAdmin(true))
       fetchDataFromAPI()
-    } 
-  },[token])
+    } else {
+      dispatch(setIsLogin(false));
+      dispatch(setIsAdmin(false))
+    }
+  },[])
   return (
     <>
 
@@ -48,7 +51,6 @@ function App() {
 
     { isLogin && <Navbar />}
       <Routes>
-            <Route path='/login' element={<Login/>}/>  
         <Route element={<ProtectedRoute isLogin={isLogin} isAdmin = {isAdmin}  />} >
             <Route path='/' element={<Login/>}/>  
             <Route path='/getallusers' element={<AllUserList/>}/>  
@@ -56,6 +58,7 @@ function App() {
             <Route path='/newuser' element={<Test/>}/>  
             <Route path='/updateuser/:empid' element={<UpdateUser/>}/>  
         </Route>
+            <Route path='/login' element={<Login/>}/>  
       </Routes>       
     </>
   )
